@@ -55,6 +55,14 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
+app.use('/user', authMiddleWare.authenticate, userRoute); //user routes
+
+//routes
+app.get('/', (req, res) => {
+  res.cookie('XSRF-TOKEN', req.csrfToken(), { httpOnly: false });
+  res.json({"status": "Success", "message": "Hello world"});
+});
+
 //handling unhandled error
 app.use((err, req, res, next) => {
   if (err.code == 'EBADCSRFTOKEN') {
@@ -63,14 +71,6 @@ app.use((err, req, res, next) => {
   } else {
     return next(createError(404));
   } 
-});
-
-app.use('/user', authMiddleWare.authenticate, userRoute); //user routes
-
-//routes
-app.get('/', (req, res) => {
-  res.cookie('XSRF-TOKEN', req.csrfToken(), { httpOnly: false });
-  res.json({"status": "Success", "message": "Hello world"});
 });
 
 app.listen(port, () => {
