@@ -1,0 +1,11 @@
+NODE_ENV=development
+ALLOWED_ORIGINS=http://localhost:4200,http://localhost:9000,http://localhost:4200/api
+GOOGLE_CLIENT_ID=Your google client Id
+GOOGLE_CLIENT_SECRET=Your google client secret
+
+
+PUBLIC_KEY='-----BEGIN PUBLIC KEY-----
+MIGeMA0GCSqGSIb3DQEBAjjhQUAA4GMADCBjjkghgiAKBgH6MNd72o5ZCIYhgyKVBISO4wSnA
+X1cnhHRXM1Dy3kONh+nwKfucRjaNXJDUAxlnjnscgYO9BUb1/VqIyvlEQ7JL8fiPjKt
+2t/xvuvnuzeYqlvvAgMBAAE=
+-----END PUBLIC KEY-----'
