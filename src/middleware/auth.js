@@ -1,6 +1,6 @@
 const util = require('../util/utils');
 const jwtutil = require("../util/jwt_utils");
-const fs = require('fs');
+//const fs = require('fs');
 const axios = require('axios');
 const jwktopem = require('jwk-to-pem');
 const NodeCache = require('node-cache');
@@ -41,7 +41,8 @@ async function authenticate(req, res, next) {
       if(!tokenVerifyRes.valid || tokenVerifyRes.expired || !userDecodedResult) {
         res.status(401).json(loginFailedJson);  
       } else {
-        const userSession = util.getActiveUserSession(userDecodedResult.email);
+        //const userSession = util.getActiveUserSession(userDecodedResult.email);
+        util.getActiveUserSession(userDecodedResult.email);
         /**
          * Here, user details got from the incoming authrization token must be verified from DB
          * As, I have not implemented db in this POC, 
@@ -67,15 +68,16 @@ async function authenticate(req, res, next) {
     res.status(401).json(loginFailedJson)
   }
 }
-
-function getPublicKeyFromPublicPem() {
+//Commenting it as it is not being used anywhere and eslint is giving error
+/*function getPublicKeyFromPublicPem() {
   try {
     const publicKey = fs.readFileSync('./certs/public.pem', "utf8");
     return publicKey;
   } catch (error) {
+    console.error(error);
     throw error;
   }
-}
+}*/
 
 async function getPublicKeyByJose(req) {
   try {    
@@ -96,6 +98,7 @@ async function getPublicKeyByJose(req) {
     myCache.set("publicKey", publicKey);
     return publicKey;
   } catch (error) {
+    console.error(error);
     throw error;
   }
 }
