@@ -54,7 +54,7 @@ const corsOptions = {
     'Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'csrf-token',
     'xsrf-token', 'x-csrf-token', 'x-xsrf-token'
   ]
-}
+};
 app.use(cors(corsOptions));
 
 app.use('/user', authMiddleWare.authenticate, userRoute); //user routes

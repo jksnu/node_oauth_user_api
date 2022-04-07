@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": false,
+        "node": true,
+        // "es2021": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "max-lines-per-function":[2, 50],
+        "semi": [2, "always"], 
+        "no-undef": 0
+    }
+    // "rulesMeta": {
+    //     "quotes": {
+    //         "type": "suggestion",
+    //         "docs": {
+    //             "description": "disallow unnecessary semicolons",
+    //             // "recommended": true,
+    //             // "url": "https://eslint.org/docs/rules/no-extra-semi"
+    //         },
+    //         "fixable": "code",
+    //         "schema": [],
+    //         "messages": {
+    //             "unexpected": "Unnecessary semicolon."
+    //         }
+    //     }
+    // }
+}
