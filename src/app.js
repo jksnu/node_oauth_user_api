@@ -6,8 +6,9 @@ const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
 const cors = require('cors');
 const userRoute = require('./routes/user_routes');
-const authMiddleWare = require('./middleware/auth');
+//const authMiddleWare = require('./middleware/auth');
 const helmet = require('helmet');
+const {logFns, authenticate} = require('node_custom_middleware');
 
 const port = 8000;
 const app = express(); 
@@ -57,7 +58,15 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use('/user', authMiddleWare.authenticate, userRoute); //user routes
+app.use(logFns.createLog);
+
+//app.use('/user', authMiddleWare.authenticate, userRoute); //Here, the middleware authMiddleWare.authenticate is present in this project only. Both are same.
+/**
+ * using authenticate middleware from local npm package. 
+ * Here, authenticate function is not present in this project. 
+ * It is coming from project named as node_custom_middleware. It is present in package.json file
+ */
+app.use('/user', authenticate, userRoute); 
 
 //routes
 app.get('/', (req, res) => {
