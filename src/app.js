@@ -10,7 +10,6 @@ const userRoute = require('./routes/user_routes');
 const helmet = require('helmet');
 const {logFns, authenticate} = require('node_custom_middleware');
 
-const port = 8000;
 const app = express(); 
 dotenv.config({
   path: path.join(__dirname, '../.env')
@@ -39,7 +38,8 @@ app.use(csrfProtection);
 //CORS middle ware
 const corsOptions = {
   origin: (origin, callback) => {
-    if (process.env.ALLOWED_ORIGINS && process.env.NODE_ENV !== 'development') {
+    if (process.env.ALLOWED_ORIGINS && 
+      (process.env.NODE_ENV !== 'development' && process.env.NODE_ENV.trim() !== 'integ_test')) {
       const whiteList = process.env.ALLOWED_ORIGINS.split(',');
       if(whiteList.indexOf(origin) !== -1) {
         callback(null, true);
@@ -84,9 +84,7 @@ app.use((err, req, res, next) => {
   } 
 });
 
-app.listen(port, () => {
-  console.log(`app is listening at port ${port} by Process ${process.pid}`);
-});
+module.exports = app;
 
 
 

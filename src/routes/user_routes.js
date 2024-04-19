@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const utils = require('../util/utils');
 
-router.post('/registerUser', (req, res) => {  
+router.post('/registerUser', (req, res) => { 
   const username = req.body.username;
   const password = req.body.password;
   utils.addUser(username, password);
