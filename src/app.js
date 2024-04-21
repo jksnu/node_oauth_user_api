@@ -8,7 +8,8 @@ const cors = require('cors');
 const userRoute = require('./routes/user_routes');
 //const authMiddleWare = require('./middleware/auth');
 const helmet = require('helmet');
-const {logFns, authenticate} = require('node_custom_middleware');
+const {authenticate} = require('node_custom_middleware').authenticate;
+const {logFns} = require('node_custom_middleware')
 
 const app = express(); 
 dotenv.config({
